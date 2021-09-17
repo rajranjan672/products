@@ -45,3 +45,16 @@ app.listen(port, () => {
     console.log('Server is up' + port)
 })
 
+const Task =require('./models/task')
+const User = require('./models/users')
+const main = async() =>{
+    // const task = await Task.findById('612b4be40ae97a2454d3c787')
+    // await task.populate('owner').exePopulate()
+    // console.log(task.owner)
+
+    const user = await User.findById('612b4be40ae97a2454d3c787')
+    await user.populate('tasks').execPopulate()
+    console.log(user.tasks)
+}
+
+main()

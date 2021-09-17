@@ -15,6 +15,7 @@ const auth = async(req, res, next) => {
                     message: "Unauthorized!"
                 });
             }
+          
             req.user = decoded;
             console.log(req.user, "---", decoded);
             next();

@@ -42,7 +42,11 @@ const userShcema =new mongoose.Schema( {
     }]
 })
 
-
+userShcema.virtual('tasks', {
+    ref:'Task',
+    localField:"_id",
+    foreignField: 'owner'
+})
 userShcema.methods.getSignedjwt = async function() {
     const user = this
     const token =jwt.sign({_id: user._id.toString()}, 'thisis')

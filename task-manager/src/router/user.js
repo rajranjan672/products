@@ -42,6 +42,15 @@ router.post('/users/login', async(req, res) => {
     res.send(token)
 })
 
+router.post('/users/logout', auth, async(req, res) =>{
+        req.user = req.user.filter((token) => {
+            return token.token !== req.token
+        }) 
+        await req.user.save()
+
+        res.send()
+})
+
 router.delete('/users/:id', async(req, res) => {
     try{
         const user = await User.findByIdAndDelete(req.params.id)
